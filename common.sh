@@ -102,7 +102,7 @@ mysql_schema()
   echo -e "$color Downloading and installing the mysql schema$nocolor"
   yum install mysql -y &>>${logfile}
   status_check
-  mysql -h mysql-dev.nasreen.cloud -uroot -pRoboShop@1 < ${app_path}/schema/${component}.sql &>>${logfile}
+  mysql -h mysql-dev.shaik.website -uroot -pRoboShop@1 < ${app_path}/schema/${component}.sql &>>${logfile}
   status_check
 }
 
