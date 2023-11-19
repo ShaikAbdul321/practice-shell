@@ -38,13 +38,12 @@ nodejs()
 
 service_start()
 {
-  echo -e "$color CREATING ${component} SERVICE$nocolor"
-  cp /root/roboshop-shell/${component}.service /etc/systemd/system/${component}.service
+  echo -e "$color Creating ${component} Service file$nocolor"
+  cp /root/practice-shell/${component}.service /etc/systemd/system/${component}.service
   status
-  echo -e "$color system reload THE ${component} SERVICE$nocolor"
+  echo -e "$color system reload,enabling and starting ${component} service$nocolor"
   systemctl daemon-reload
   status
-  echo -e "$color ENABLEING AND STARTING THE ${component} SERVICE$nocolor"
   systemctl enable ${component} &>>${logfile}
   systemctl restart ${component}
   status
@@ -70,16 +69,15 @@ app_start()
 
 mongo_schema()
 {
-  echo -e "$color creating ${component} service file$nocolor"
-  cp /root/practice-shell/${component}.service /etc/systemd/system/${component}.service
-  status_check
-  echo -e "$color Enabling and starting the ${component} service$nocolor"
-  systemctl daemon-reload
-  status_check
-  systemctl enable ${component} &>>$logfile
-  systemctl restart ${component} &>>$logfile
-  status_check
-
+echo -e "$color DOWNLOADING AND INSTALLING THE MONGODB SCHEMA$nocolor"
+cp /root/practice-shell/mongodb.repo /etc/yum.repos.d/mongodb.repo
+status_check
+echo -e "$color Installing Mongo schema$nocolor"
+yum install mongodb-org-shell -y &>>${logfile}
+status_check
+echo -e "$color Loading schema$nocolor"
+mongo --host mongodb-dev.shaik.website <${app_path}/schema/${component}.js &>>${logfile}
+status_check
 }
 
 maven()
