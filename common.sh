@@ -52,19 +52,19 @@ service_start()
 app_start()
 {
   echo -e "$color Adding user and location$nocolor"
-    useradd
-    status_check
-    rm -rf ${app_path} &>>$logfile
-    status_check
-    mkdir ${app_path} &>>$logfile
-    status_check
-    cd ${app_path}
-    echo -e "$color Downloading new app content and dependencies to ${component} server$nocolor"
-    curl -O https://roboshop-artifacts.s3.amazonaws.com/${component}.zip &>>$logfile
-    status_check
-    unzip ${component}.zip &>>$logfile
-    status_check
-    rm -rf ${component}.zip
+  useradd
+  status_check
+  rm -rf ${app_path} &>>$logfile
+  status_check
+  mkdir ${app_path} &>>$logfile
+  status_check
+  cd ${app_path}
+  echo -e "$color Downloading new app content and dependencies to ${component} server$nocolor"
+  curl -O https://roboshop-artifacts.s3.amazonaws.com/${component}.zip &>>$logfile
+  status_check
+  unzip ${component}.zip &>>$logfile
+  status_check
+  rm -rf ${component}.zip
 }
 
 mongo_schema()
