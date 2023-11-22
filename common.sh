@@ -52,7 +52,7 @@ service_start()
 app_start()
 {
   echo -e "$color Adding user and location$nocolor"
-    useradd &>>$logfile
+    useradd
     status_check
     rm -rf ${app_path} &>>$logfile
     status_check
