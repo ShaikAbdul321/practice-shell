@@ -40,19 +40,19 @@ service_start()
 {
   echo -e "$color Creating ${component} Service file$nocolor"
   cp /root/practice-shell/${component}.service /etc/systemd/system/${component}.service
-  status
+  status_check
   echo -e "$color system reload,enabling and starting ${component} service$nocolor"
   systemctl daemon-reload
-  status
+  status_check
   systemctl enable ${component} &>>${logfile}
   systemctl restart ${component}
-  status
+  status_check
 }
 
 app_start()
 {
   echo -e "$color Adding user and location$nocolor"
-    useradd roboshop &>>$logfile
+    useradd &>>$logfile
     status_check
     rm -rf ${app_path} &>>$logfile
     status_check
