@@ -20,8 +20,6 @@ status_check()
     fi
 }
 
-
-
 nodejs()
 {
   echo -e "$color Downloading Nodejs repo file$nocolor"
